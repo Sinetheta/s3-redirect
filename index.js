@@ -9,7 +9,8 @@ app.get('/favicon.ico', function(req, res) {
 });
 
 app.get('/:imageId', function(req, res) {
-    https.get('https://s3.amazonaws.com/kevin-ss/' + req.params.imageId + '.png', function(proxyRes) {
+    var image = req.params.imageId.replace(/\.png/i, '') + '.png'
+    https.get('https://s3.amazonaws.com/kevin-ss/' + image , function(proxyRes) {
         proxyRes.pipe(res);
     });
 });
